@@ -13,3 +13,6 @@ build: ## Build containers
 
 deploy: ## Deploy artifacts
 	skaffold run --default-repo ${default-repo}
+
+expose: ## Port forwards controller
+	kubectl port-forward svc/controller 8080:80

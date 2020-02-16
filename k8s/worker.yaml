@@ -29,7 +29,6 @@ metadata:
         labels:
                 app: worker
 spec:
-        type: NodePort
         selector:
                 app: worker
         ports:

@@ -16,11 +16,6 @@ build:
   - image: controller
     docker:
             dockerfile: package/controller
-  - image: grpcurl
-    docker:
-            dockerfile: package/grpcurl
-  googleCloudBuild:
-          projectId: integrin-dev
 deploy:
   kubectl:
     manifests:
