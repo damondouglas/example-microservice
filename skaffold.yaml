@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: temp
+build:
+  tagPolicy:
+          envTemplate:
+                  template: "{{.IMAGE_NAME}}:{{.TAG}}"
+  artifacts:
+  - image: base
+    docker:
+            dockerfile: package/base
+  - image: worker
+    docker:
+            dockerfile: package/worker
+  - image: controller
+    docker:
+            dockerfile: package/controller
+  - image: grpcurl
+    docker:
+            dockerfile: package/grpcurl
+  googleCloudBuild:
+          projectId: integrin-dev
+deploy:
+  kubectl:
+    manifests:
+    - k8s/worker.yaml
+    - k8s/controller.yaml

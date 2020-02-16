@@ -1,0 +1,9 @@
+FROM gcr.io/integrin-dev/base:v0.0.1 as builder
+
+FROM alpine:latest
+
+WORKDIR /app
+
+COPY --from=builder /build/controller /app
+
+ENTRYPOINT ["./controller"]

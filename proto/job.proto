@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package jobpb;
+
+service Worker {
+	rpc Echo(Job) returns (Job) {}
+	rpc Stop(Job) returns (Job) {}
+}
+
+message Job {
+	string id = 1;	
+}

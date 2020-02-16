@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: worker
+spec:
+        selector:
+                matchLabels:
+                        app: worker
+        template:
+                metadata:
+                        labels:
+                                app: worker
+                spec:
+                        containers:
+                                - name: worker
+                                  image: worker
+                                  ports:
+                                          - containerPort: 50051
+                                  env:
+                                          - name: PORT
+                                            value: "50051"
+                                          - name: ECHO
+                                            value: "foo"
+---
+apiVersion: v1
+kind: Service
+metadata:
+        name: worker
+        labels:
+                app: worker
+spec:
+        type: NodePort
+        selector:
+                app: worker
+        ports:
+                - port: 50051
+                  targetPort: 50051
+
