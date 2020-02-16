@@ -65,10 +65,6 @@ func runJob(w http.ResponseWriter, r *http.Request) {
 		var result *jobpb.Job
 		i++
 		if i >= n {
-			_, err = client.Stop(ctx, &jobpb.Job{})
-			if err != nil {
-				log.Println(err)
-			}
 			return
 		}
 		result, err = client.Echo(ctx, &jobpb.Job{})

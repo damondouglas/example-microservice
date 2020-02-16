@@ -31,7 +31,6 @@ metadata:
         labels:
                 app: controller
 spec:
-        type: LoadBalancer
         selector:
                 app: controller
         ports:
